@@ -1,94 +1,74 @@
-set nocompatible
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Filename: .vimrc                                                         "
+" Maintainer: Michael J. Smalley <michaeljsmalley@gmail.com>                 "
+"        URL: http://github.com/michaeljsmalley/dotfiles                     "
+"                                                                            "
+"                                                                            "
+" Sections:                                                                  "
+"   01. General ................. General Vim behavior                       "
+"   02. Events .................. General autocmd events                     "
+"   03. Theme/Colors ............ Colors, fonts, etc.                        "
+"   04. Vim UI .................. User interface behavior                    "
+"   05. Text Formatting/Layout .. Text, tab, indentation related             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Initialize Pathogen
-" runtime bundle/vim-pathogen/autoload/pathogen.vim
-" execute pathogen#infect()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 01. General                                                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible         " get rid of Vi compatibility mode. SET FIRST!
 
-" Enable syntax highlighting
-syntax on
-filetype plugin indent on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 02. Events                                                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 
-" Colorscheme see https://github.com/hukl/Smyck-Color-Scheme
-color smyck
+" In Makefiles DO NOT use spaces instead of tabs
+autocmd FileType make setlocal noexpandtab
+" In Ruby files, use 2 spaces instead of 4 for tabs
+autocmd FileType ruby setlocal sw=2 ts=2 sts=2
 
-" Add line numbers
-set number
-set ruler
+" Enable omnicompletion (to use, hold Ctrl+X then Ctrl+O while in Insert mode.
+set ofu=syntaxcomplete#Complete
 
-" Set encoding
-set encoding=utf-8
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 03. Theme/Colors                                                           "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256              " enable 256-color mode.
+syntax enable             " enable syntax highlighting (previously syntax on).
+colorscheme molokai       " set colorscheme
 
-" Whitespace stuff
-set nowrap
-set tabstop=4
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+" Prettify JSON files
+autocmd BufRead,BufNewFile *.json set filetype=json
+autocmd Syntax json sou ~/.vim/syntax/json.vim
 
-" Show trailing spaces and highlight hard tabs
-set list listchars=tab:»·,trail:·
+" Prettify Vagrantfile
+autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Highlight characters that go over 80 columns
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
-" Strip trailing whitespaces on each save
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 04. Vim UI                                                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set number                " show line numbers
+set cul                   " highlight current line
+set laststatus=2          " last window always has a statusline
+set nohlsearch            " Don't continue to highlight searched phrases.
+set incsearch             " But do highlight as you type your search.
+set ignorecase            " Make searches case-insensitive.
+set ruler                 " Always show info along bottom.
+set showmatch
+set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
 
-" Search related settings
-set incsearch
-set hlsearch
-
-" Map Ctrl+l to clear highlighted searches
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-
-" Highlight characters behind the 80 chars margin
-:au BufWinEnter * let w:m2=matchadd('ColumnMargin', '\%>80v.\+', -1)
-
-" Disable code folding
-set nofoldenable
-
-" Directories for swp files
-set backupdir=~/.vimbackup
-set directory=~/.vimbackup
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-
-" make uses real tabs
-au FileType make set noexpandtab
-
-" Erlang uses 4 spaces
-au FileType erlang set softtabstop=4 tabstop=4 shiftwidth=4
-
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
-
-" md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
-
-" add json syntax highlighting
-au BufNewFile,BufRead *.json set ft=javascript
-
-au BufRead,BufNewFile *.txt call s:setupWrapping()
-
-" make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
-
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" ctrp custom ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.eunit$',
-  \ 'file': '\.exe$\|\.so$\|\.dll\|\.beam$\|\.DS_Store$'
-  \ }
-
-let g:erlangCheckFile = "~/.vim/bundle/vimerl/compiler/erlang_check_file.erl"
-let g:erlangHighlightErrors = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 05. Text Formatting/Layout                                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autoindent            " auto-indent
+set tabstop=4             " tab spacing
+set softtabstop=4         " unify
+set shiftwidth=4          " indent/outdent by 4 columns
+set shiftround            " always indent/outdent to the nearest tabstop
+set expandtab             " use spaces instead of tabs
+set smarttab              " use tabs at the start of a line, spaces elsewhere
+set nowrap                " don't wrap text
