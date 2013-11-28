@@ -1,5 +1,5 @@
 PATH=/usr/local/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/home/tjark/bin:$PATH
+PATH=$HOME/bin:$PATH
 
 fortune
