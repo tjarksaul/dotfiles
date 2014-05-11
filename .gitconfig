@@ -1,0 +1,10 @@
+[user]
+	name = Tjark Saul
+	email = tjark.saul@wachplan.net
+[core]
+	autocrlf = input
+[push]
+	default = current
+[alias]
+        look = log --graph --pretty=format:'%Cred %h : %Creset%s %Cgreen(%cr) %C(blue)<%an>%C(yellow)%d %Creset' --date=relative
+        tagcommit = !sh -c 'git rev-list $0 | head -n 1'
