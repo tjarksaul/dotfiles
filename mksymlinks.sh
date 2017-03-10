@@ -50,8 +50,12 @@ else
         install_zsh
     # If the platform is OS X, tell the user to install zsh :)
     elif [[ $platform == 'Darwin' ]]; then
-        echo "Please install zsh, then re-run this script!"
-        exit
+        if brew install zsh; then
+            install_zsh
+        else
+            echo "Please install zsh, then re-run this script!"
+            exit
+        fi
     fi
 fi
 }
