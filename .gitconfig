@@ -3,6 +3,8 @@
 	email = tjark.saul@wachplan.net
 [core]
 	autocrlf = input
+	pager = less -R
+	editor = subl -n -w
 [push]
 	default = current
 [alias]
