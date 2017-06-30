@@ -60,4 +60,4 @@ else
 fi
 }
 
-#install_zsh
+install_zsh
