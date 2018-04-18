@@ -1,7 +1,7 @@
 typeset -Ag FX FG BG
 
-LSCOLORS="exfxcxdxbxegedabagacad"
-LS_COLORS="di=34;47:ln=35;47:so=32;47:pi=33;47:ex=31;47:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+LSCOLORS="fxfHcxdxbxfgfdabagacad"
+LS_COLORS="di=32;47:ln=35;47:so=32;47:pi=33;47:ex=31;47:bd=32;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
 
 FX=(
     reset     "%{[00m%}"
