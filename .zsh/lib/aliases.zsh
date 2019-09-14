@@ -1,6 +1,7 @@
 alias ll='ls -la'
 alias lh='ls -lah'
 alias ...='cd ../..'
+alias crontab='crontab -i'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias vinfo='mplayer -vo null -ao null -identify -frames 0'
 alias gut='git'
@@ -40,7 +41,7 @@ git-featurebranch() {
     read COMMIT
     git show-ref --verify --quiet refs/heads/$BRANCH
     if [ $? -eq 0 ]; then 
-        echo -n "Branch mit dem Namen $BRANCH existiert. LÃschen? [yN] " 
+        echo -n "Branch mit dem Namen $BRANCH existiert. LÃƒschen? [yN] " 
         read DEL
         case $DEL in
             [Yy]* ) git branch -D $BRANCH;;
