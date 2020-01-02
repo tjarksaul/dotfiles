@@ -20,3 +20,5 @@ zle -N down-line-or-beginning-search
 
 export HISTSIZE=10000
 export HISTFILESIZE=""
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
