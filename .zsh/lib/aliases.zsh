@@ -51,3 +51,7 @@ git-featurebranch() {
     git checkout -b $BRANCH
     git commit -m $COMMIT
 }
+
+function run-if-available() {
+    which -s $1 2>&1 > /dev/null && $1
+}
