@@ -9,6 +9,8 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 files=".vimrc .vim .zshrc .zlogin .zsh .gvimrc"    # list of files/folders to symlink in homedir
+plugins="https://github.com/lukechilds/zsh-better-npm-completion.git https://github.com/lukechilds/zsh-nvm.git"
+plugin_dir=$dir/.zsh/plugins
 
 ##########
 
@@ -23,7 +25,13 @@ cd $dir
 echo "done"
 
 # install zsh-nvm plugin
-git clone https://github.com/lukechilds/zsh-nvm.git $dir/.zsh/plugins/zsh-nvm
+echo "Installing plugins..."
+cd $plugin_dir
+for plugin in $plugins; do
+    git clone $plugin
+done
+
+exit
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
