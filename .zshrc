@@ -3,6 +3,8 @@ export ZSH=~/.zsh
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 for config_file ($ZSH/lib/*.zsh) source $config_file
 
+for config_file ($ZSH/plugins/*/*.zsh) source $config_file
+
 # Load and run compinit
 autoload -U compinit
 compinit -i
@@ -22,3 +24,9 @@ export HISTSIZE=10000
 export HISTFILESIZE=""
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tsaul/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tsaul/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tsaul/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tsaul/google-cloud-sdk/completion.zsh.inc'; fi
