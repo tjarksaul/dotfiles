@@ -4,6 +4,8 @@
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
+set -e
+
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
@@ -24,6 +26,12 @@ echo -n "Changing to the $dir directory ..."
 cd $dir
 echo "done"
 
+echo "Setting up fzf"
+which -s brew
+if [[ $platform == 'Darwin' ]]; then
+    $(brew --prefix)/opt/fzf/install --bin
+fi
+
 # install zsh-nvm plugin
 echo "Installing plugins..."
 cd $plugin_dir
@@ -31,7 +39,7 @@ for plugin in $plugins; do
     git clone $plugin
 done
 
-exit
+cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
