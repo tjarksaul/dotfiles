@@ -38,8 +38,7 @@ syntax enable             " enable syntax highlighting (previously syntax on).
 colorscheme molokai       " set colorscheme
 
 " Prettify JSON files
-autocmd BufRead,BufNewFile *.json set filetype=json
-autocmd Syntax json sou ~/.vim/syntax/json.vim
+autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 " Prettify Vagrantfile
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
