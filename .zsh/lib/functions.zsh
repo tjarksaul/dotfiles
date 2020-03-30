@@ -44,3 +44,7 @@ function github() {
   github_url="`echo $github_url | awk '{ print $2 }' | sed 's/git@github\.com:/http:\/\/github\.com\//g'`"
   echo $github_url
 }
+
+function run-if-available() {
+  which $1 > /dev/null 2>&1 && $1 || true
+}
