@@ -27,9 +27,11 @@ cd $dir
 echo "done"
 
 echo "Setting up fzf"
-which -s brew
 if [[ $platform == 'Darwin' ]]; then
+    which -s brew
     $(brew --prefix)/opt/fzf/install --bin
+else 
+    echo "Please install fzf manually!"
 fi
 
 # install zsh-nvm plugin
@@ -44,7 +46,7 @@ cd $dir
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/
+    mv ~/$file ~/dotfiles_old/ || true
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
 done
