@@ -1,0 +1,60 @@
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "hg_branch",
+    "docker_context",
+    "package",
+    "dotnet",
+    "elixir",
+    "elm",
+    "erlang",
+    "golang",
+    "haskell",
+    "java",
+    "julia",
+    "nodejs",
+    "ocaml",
+    "php",
+    "purescript",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    "zig",
+    "nix_shell",
+    "conda",
+    "memory_usage",
+    "kubernetes",
+    "aws",
+    "env_var",
+    "crystal",
+    "cmd_duration",
+    "custom",
+    "line_break",
+    "jobs",
+    "battery",
+    "time",
+    "character",
+]
+
+[aws]
+disabled = true
+
+[kubernetes]
+disabled = false
+symbol = "☁️ "	 
+[kubernetes.context_aliases]
+"arn:aws:eks:eu-west-1:768561968278:cluster/rent-dev" = "rent-aws-dev"
+"docker-desktop" = "docker"
+"gke_wunder-city_europe-west1-b_city-cluster" = "city-dev"
+"gke_wunder-city_europe-west1_city-production" = "❗city-prod❗"
+"gke_wunder-rent_europe-west1-b_rent-dev" = "rent-dev"
+
+[docker_context]
+disabled = false
+only_with_files = true

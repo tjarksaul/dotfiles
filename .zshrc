@@ -22,3 +22,7 @@ zle -N down-line-or-beginning-search
 
 export HISTSIZE=10000
 export HISTFILESIZE=""
+#
+source <(kubectl completion zsh)
+eval "$(starship init zsh)"
+
