@@ -4,10 +4,10 @@ OPTIND=1
 
 print=1
 while getopts "p" opt; do
-    case "$opt" in
-    p)  print=0
-        ;;
-    esac
+  case "$opt" in
+  p) print=0
+    ;;
+  esac
 done
 
 shift $((OPTIND-1))
