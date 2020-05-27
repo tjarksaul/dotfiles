@@ -6,11 +6,16 @@
 
 set -e
 
-########## Variables
+########## Configuration
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+dir=$HOME/dotfiles                    # dotfiles directory
+olddir=$HOME/dotfiles_old             # old dotfiles backup directory
 files=".vimrc .vim .zshrc .zlogin .zsh .gvimrc"    # list of files/folders to symlink in homedir
+
+config_dir=$HOME/.config
+config_olddir=$olddir/.config
+config_files="starship.toml"
+
 plugins="https://github.com/lukechilds/zsh-better-npm-completion.git https://github.com/lukechilds/zsh-nvm.git"
 plugin_dir=$dir/.zsh/plugins
 
@@ -46,9 +51,17 @@ cd $dir
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/$file ~/dotfiles_old/ || true
+    mv ~/$file $olddir || true
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/$file
+done
+
+# move any existing config files to $config_olddir, then create symlinks for all files in $config_dir
+for file in $config_files; do 
+    echo "Moving any existing config files from ${config_dir} to ${config_olddir}"
+    mv $config_dir/$file $config_olddir/$file || true
+    echo "Creating symlink to $file in $config_dir"
+    ln -s $dir/.config/$file $config_dir/$file
 done
 
 function install_zsh {
