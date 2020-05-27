@@ -3,12 +3,8 @@
 OPTIND=1
 
 print=1
-while getopts "h?p" opt; do
+while getopts "p" opt; do
     case "$opt" in
-    h|\?)
-        show_help
-        exit 0
-        ;;
     p)  print=0
         ;;
     esac
