@@ -1,0 +1,28 @@
+[user]
+    name = Tjark Saul
+[core]
+    autocrlf = input
+    pager = less -R
+    editor = subl -n -w
+[init]
+    defaultBranch = main
+[push]
+    default = current
+[pull]
+    rebase = true
+[alias]
+    look = log --graph --pretty=format:'%Cred %h : %Creset%s %Cgreen(%cr) %C(blue)<%an>%C(yellow)%d %Creset' --date=relative
+    tagcommit = !sh -c 'git rev-list $0 | head -n 1'
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    pu = pull
+    ch = checkout
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+[help]
+    autocorrect = 5

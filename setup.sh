@@ -64,6 +64,10 @@ for file in $config_files; do
     ln -s $dir/.config/$file $config_dir/$file
 done
 
+# create .gitconfig if not exist
+test -f $HOME/.gitconfig && echo "There's already a .gitconfig, not creating any." \
+    || cp $dir/.gitconfig.template $HOME/.gitconfig
+
 function install_zsh() {
     # Test to see if zshell is installed.  If it is:
     if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
