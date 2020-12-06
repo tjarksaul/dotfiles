@@ -9,8 +9,10 @@ for config_file ($ZSH/plugins/*/*.zsh) source $config_file
 test -d $ZSH/lib/$(uname) && for config_file ($ZSH/lib/$(uname)/*.zsh) source $config_file
 
 # Load and run compinit
-autoload -U compinit
-compinit -i
+autoload -Uz compinit
+compinit
+fpath=($HOME/.zsh/completion $fpath)
+# compinit -i
 
 autoload -U colors && colors
 PS1="[%{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~%{$reset_color%}] "
@@ -25,7 +27,3 @@ zle -N down-line-or-beginning-search
 
 export HISTSIZE=10000
 export HISTFILESIZE=""
-
-source <(kubectl completion zsh)
-eval "$(starship init zsh)"
-

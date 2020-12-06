@@ -23,3 +23,5 @@ zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 precmd () { vcs_info }
 
 PROMPT='[%n@%m %~${vcs_info_msg_0_}] %{$reset_color%}'
+
+which starship > /dev/null 2>&1 && eval "$(starship init zsh)" || echo "Starship not available, using default prompt"

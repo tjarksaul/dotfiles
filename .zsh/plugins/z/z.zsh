@@ -1,0 +1,1 @@
+[ -f ~/z/z.sh ] && . $HOME/z/z.sh
