@@ -31,3 +31,6 @@
         url = https://github.com/jimenezrick/vimerl.git
 
 
+[submodule "private"]
+	path = private
+	url = git@github.com:tjarksaul/dotfiles_private.git
