@@ -46,5 +46,15 @@ function github() {
 }
 
 function run-if-available() {
-  which $1 > /dev/null 2>&1 && $1 || true
+  which $1 > /dev/null 2>&1 && $@ || true
+}
+
+function check_dotfiles_status() {
+  dir=$(pwd)
+  cd $HOME/dotfiles
+  RED='\033[0;31m'
+  NC='\033[0m'   
+  [ -n "$(git status --porcelain)" ] \
+    && echo "### ${RED}UNCOMMITED CHANGES${NC} ###\nThere are uncommited changes in your dotfiles directory. Please check!"
+  cd $dir
 }
