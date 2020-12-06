@@ -8,9 +8,12 @@ set -e
 
 ########## Configuration
 
-dir=$HOME/dotfiles                              # dotfiles directory
-olddir=$HOME/dotfiles_old                       # old dotfiles backup directory
-files=".vimrc .vim .zshrc .zlogin .zsh .gvimrc" # list of files/folders to symlink in homedir
+# dotfiles directory
+dir=$HOME/dotfiles
+# old dotfiles backup directory
+olddir=$HOME/dotfiles_old
+# list of files/folders to symlink in homedir
+files=".vimrc .vim .zshrc .zlogin .zsh .gvimrc .ssh" 
 
 config_dir=$HOME/.config
 config_olddir=$olddir/.config
