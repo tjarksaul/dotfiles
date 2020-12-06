@@ -49,6 +49,12 @@ function run-if-available() {
   which $1 > /dev/null 2>&1 && $@ || true
 }
 
+function weather() {
+  which wego 2>&1 > /dev/null || return 0
+  which locateme 2>&1 > /dev/null && eval "local LOC=(-l $(locateme -f "{LAT},{LON}"))"
+  wego ${LOC} 0
+}
+
 function check_dotfiles_status() {
   dir=$(pwd)
   cd $HOME/dotfiles
