@@ -5,6 +5,9 @@ for config_file ($ZSH/lib/*.zsh) source $config_file
 
 for config_file ($ZSH/plugins/*/*.zsh) source $config_file
 
+# Load OS-specific confic files
+test -d $ZSH/lib/$(uname) && for config_file ($ZSH/lib/$(uname)/*.zsh) source $config_file
+
 # Load and run compinit
 autoload -U compinit
 compinit -i

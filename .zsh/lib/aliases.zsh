@@ -1,25 +1,14 @@
 alias ll='ls -la'
 alias lh='ls -lah'
 alias ...='cd ../..'
-alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias vinfo='mplayer -vo null -ao null -identify -frames 0'
 alias gut='git'
 alias fire='git commit -am "BURNING DOWN" && git push -f origin master'
-alias appcode="open -a AppCode.app"
-alias xcph='swift package generate-xcodeproj | grep -o ".\/.*.xcodeproj$"'
-alias xcp='xcph | xargs open'
-alias xcpa='xcph | xargs open -a AppCode.app'
 alias kc='kubectl'
 alias gst='git status'
 alias gp='git pull'
 alias gpu'git push'
 alias gc='git commit'
-
-function telekomrechnung() {
-    cd /Volumes/Secomba/tsaul/Boxcryptor/Dropbox\ \(Personal\)/Verwaltung/Finanzen/Rechnungen/Telekom/wd
-    gpg --output rg.zip --decrypt $1 && unzip rg.zip
-    rm rg.zip
-}
 
 function mcd() {
     mkdir $1 && cd $1
