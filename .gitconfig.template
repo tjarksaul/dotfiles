@@ -3,7 +3,6 @@
 [core]
     autocrlf = input
     pager = less -R
-    editor = subl -n -w
 [init]
     defaultBranch = main
 [push]

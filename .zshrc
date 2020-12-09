@@ -26,3 +26,6 @@ zle -N down-line-or-beginning-search
 
 export HISTSIZE=10000
 export HISTFILESIZE=""
+
+EDITOR=vim
+GIT_EDITOR=vim

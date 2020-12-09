@@ -9,6 +9,7 @@ alias gst='git status'
 alias gp='git pull'
 alias gpu'git push'
 alias gc='git commit'
+alias gl='git log -n 10 --pretty=format:"%C(auto) %h %s %d"'
 
 function mcd() {
     mkdir $1 && cd $1
