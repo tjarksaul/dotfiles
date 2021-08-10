@@ -64,3 +64,14 @@ function check_dotfiles_status() {
     && echo "### ${RED}UNCOMMITED CHANGES${NC} ###\nThere are uncommited changes in your dotfiles directory. Please check!"
   cd $dir
 }
+
+git () {
+    if [ "$1" = "checkout" ]
+    then
+        echo "Don't use checkout; use switch or restore." >&2
+        return 1
+    else
+        command git "$@"
+    fi
+}
+

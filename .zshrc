@@ -29,3 +29,4 @@ export HISTFILESIZE=""
 
 EDITOR=vim
 GIT_EDITOR=vim
+
