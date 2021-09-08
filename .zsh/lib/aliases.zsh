@@ -46,3 +46,6 @@ git-featurebranch() {
     git checkout -b $BRANCH
     git commit -m $COMMIT
 }
+
+alias cgr="cd $(git rev-parse --show-toplevel)"
+
