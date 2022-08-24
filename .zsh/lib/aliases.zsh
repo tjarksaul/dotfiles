@@ -7,7 +7,7 @@ alias fire='git commit -am "BURNING DOWN" && git push -f origin master'
 alias kc='kubectl'
 alias gst='git status'
 alias gp='git pull'
-alias gpu'git push'
+alias gpu='git push'
 alias gc='git commit'
 alias gl='git log -n 10 --pretty=format:"%C(auto) %h %s %d"'
 
