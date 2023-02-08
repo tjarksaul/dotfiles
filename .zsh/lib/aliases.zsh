@@ -47,5 +47,8 @@ git-featurebranch() {
     git commit -m $COMMIT
 }
 
-alias cgr="cd $(git rev-parse --show-toplevel)"
+cgr() {
+    git_root=$(git rev-parse --show-toplevel)
+    cd $git_root
+}
 
