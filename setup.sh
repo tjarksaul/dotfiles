@@ -24,6 +24,11 @@ plugin_dir=$dir/.zsh/plugins
 
 ##########
 
+darwin_setup () {
+  # enable long key press for umlauts
+  defaults write -g ApplePressAndHoldEnabled -bool true
+}
+
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
@@ -36,6 +41,7 @@ echo "done"
 
 echo "Setting up fzf"
 if [[ $platform == 'Darwin' ]]; then
+    darwin_setup
     which -s brew
     $(brew --prefix)/opt/fzf/install --bin
 else
